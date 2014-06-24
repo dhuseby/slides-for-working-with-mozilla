@@ -45,6 +45,9 @@
 					<p>
 						<small>Presented by <a href="#" mailto="kevin@mozilla.org">Kevin Grandon</a> / <a href="#" mailto="kevin@mozilla.org">kgrandon@mozilla.org</a></small>
 					</p>
+					<p>
+						<small>Slides: <a href="http://kevingrandon.github.io/slides-fxos-homescreen-gaia-weekly">http://kevingrandon.github.io/slides-fxos-homescreen-gaia-weekly</a></small>
+					</p>
 				</section>
 
 				<section>
@@ -71,14 +74,38 @@
 				</section>
 
 				<section>
-					<h2>Architecture</h2>
-					<p>One feature, split into multiple applications and libraries.</p>
-					<ul>
-						<li>Bookmark App</li>
-						<li>Collection App</li>
-						<li>Search App</li>
-						<li>Vertical Homscreen</li>
+					<h2>How did we build it?</h2>
+					<p>Replaceable homescreens in 2.0 was desired, but missed.</p>
+					<p>Original plan was to ship both, using the replaceable homescreen feature.</p>
+					<p>Due to these reasons, a new app was born.</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Architecture</h2>
+						<p>One feature, split into multiple applications and libraries.</p>
+					</section>
+					<section>
+						<h2>apps/bookmark</h2>
+						<ul>
+							<li>UI for adding/editing/deleting bookmarks.</li>
+							<li>shared/js/bookmarks_database.js to manage records.</li>
+						</ul>
+						<p>&nbsp;</p>
+						<h2>apps/collection</h2>
+						<ul>
+							<li>UI for adding/editing/deleting smart collections.</li>
+							<li>shared/js/collections_database.js to manage records.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>apps/verticalhome</h2>
+						<p>Pulls in bookmarks, collections, and apps for the users homepage.</p>
+						<p>&nbsp;</p>
+						<h2>apps/search</h2>
+						<p>What will be rocketbar.</p>
 					</ul>
+					</section>
 				</section>
 
 				<section>
@@ -100,6 +127,17 @@
 							<img width="270" src="img/grid-collection.png">
 							<img width="270" src="img/grid-search.png">
 						</p>
+					</section>
+					<section>
+						<h2>what lives in the grid?</h2>
+						<ul>
+							<li>dividers</li>
+							<li>apps</li>
+							<li>collections</li>
+							<li>bookmarks</li>
+							<li>Custom items (search and Marketplace results)</li>
+							<li>All extend: GaiaGrid.GridItem</li>
+						</ul>
 					</section>
 					<section>
 						<h2>gaia-grid example code</h2>
@@ -151,13 +189,13 @@
 					<section>
 						<h2>Performance</h2>
 						<ul>
-							<li>Will-change on edit mode, during a drag operation.</li>
 							<li>Native APZ scrolling.</li>
 							<li>Reduced typical memory usage due to less code.</li>
+							<li>Will-change on edit mode, during a drag operation.</li>
 						</ul>
 					</section>
 					<section>
-						<h2>where is the video?</h2>
+						<h2>Scrolling /w will-change</h2>
 						<video class="stretch" data-autoplay src="img/scrolling.ogv"></video>
 					</section>
 				</section>
