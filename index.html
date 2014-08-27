@@ -40,206 +40,77 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>Vertical Homescreen</h1>
-					<h3>Because you like to scroll and stuff.</h3>
+					<h1>Working with Mozilla</h1>
+					<h3>Because it is fun!</h3>
 					<p>
-						<small>Presented by <a href="#" mailto="kevin@mozilla.org">Kevin Grandon</a> / <a href="#" mailto="kevin@mozilla.org">kgrandon@mozilla.org</a></small>
+						<small>Presented by <a href="#" mailto="dhuseby@mozilla.org">Dave Huseby</a> / <a href="#" mailto="dhuseby@mozilla.org">dhuseby@mozilla.org</a></small>
 					</p>
 					<p>
-						<small>Slides: <a href="http://kevingrandon.github.io/slides-fxos-homescreen-gaia-weekly">http://kevingrandon.github.io/slides-fxos-homescreen-gaia-weekly</a></small>
+						<small>Slides: <a href="http://dhuseby.github.io/slides-for-working-with-mozilla">http://dhuseby.github.io/slides-for-working-with-mozilla</a></small>
 					</p>
 				</section>
 
-				<section>
-					<img width="380" src="img/grid-home.png">
-				</section>
+        <section>
+          <h2>Modules and Module Owners</h2>
+          <ul>
+            <li>Hierarchy of Modules, each module has one or more owners.</li>
+            <ul>
+              <li>Firefox OS Module, owners: Andreas Gal, Chris Jones.</li>
+              <li>Gecko B2G Runtime, owners: Vivien Nicolas, Fabrice Desré, Chris Jones.</li>
+            </ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Review Process</h2>
+          <ol>
+            <li>Propose a feature on the mailing list.</li>
+            <li>Create a bug on bugzilla.</li>
+            <li>Implement the patches.</li>
+            <li>Flag for peer review (r?).</li>
+            <ol>
+              <li>UX, security, product, and QA.</li>
+            </ol>
+            <li>Incorporate feedback.</li>
+            <li>Land the patch.</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Bugzilla is the Devil we Know</h2>
+          <ul>
+            <li>The way things get done.</li>
+            <li>The primary communication tool for coders.</li>
+            <li>Flags: r?, r+, r-, ni?</li>
+            <li>Flags are how you will get UX, Security, and QA reviews.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Open Source is Built in the Open</h2>
+          <ul>
+            <li>Get community review of feature proposals in mailing lists.</li>
+            <li>Build relationships with module owners.</li>
+            <li>Publish your code in a reviewable repository.</li>
+            <ul>
+              <li>Attach patches to Bugzilla bugs for review.</li>
+              <li>Github would be best.</li>
+              <li>Bugzilla understands Github pull request URLs.</li>
+            </ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Mailing Lists (https://lists.mozilla.org/listinfo)</h2>
+          <ul>
+            <li>dev-b2g</li>
+            <li>dev-gaia</li>
+            <li>dev-platform</li>
+          </ul>
+          <h2>IRC (irc.mozilla.org)</h2>
+          <ul>
+            <li>#dev-b2g</li>
+            <li>#dev-gaia</li>
+            <li>#dev-platform</li>
+          </ul>
+         </section>
 
-				<section>
-					<section>
-						<h2>But why, I hate scrolling!</h2>
-						<ul>
-							<li>Edge gestures - preserve left and right edges.</li>
-							<li>OEM Customization - possibility of changing grid configuration and sizing.</li>
-							<li>Visual refresh - Huge, beautiful icons. Probably better for your eyes.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>But I eat my carrots, my eyes are fine!</h2>
-						<img src="img/carrots.jpg">
-					</section>
-					<section>
-						<h2>Change column preference in settings.</h2>
-						<img width="500" src="img/settings_app.png">
-					</section>
-				</section>
-
-				<section>
-					<h2>How did we build it?</h2>
-					<p>Replaceable homescreens in 2.0 was desired, but missed.</p>
-					<p>Original plan was to ship both, using the replaceable homescreen feature.</p>
-					<p>Due to these reasons, a new app was born.</p>
-				</section>
-
-				<section>
-					<section>
-						<h2>Architecture</h2>
-						<p>One feature, split into multiple applications and libraries.</p>
-					</section>
-					<section>
-						<h2>apps/bookmark</h2>
-						<ul>
-							<li>UI for adding/editing/deleting bookmarks.</li>
-							<li>shared/js/bookmarks_database.js to manage records.</li>
-						</ul>
-						<p>&nbsp;</p>
-						<h2>apps/collection</h2>
-						<ul>
-							<li>UI for adding/editing/deleting smart collections.</li>
-							<li>shared/js/collections_database.js to manage records.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>apps/verticalhome</h2>
-						<p>Pulls in bookmarks, collections, and apps for the users homepage.</p>
-						<p>&nbsp;</p>
-						<h2>apps/search</h2>
-						<p>What will be rocketbar.</p>
-					</ul>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Web Components</h2>
-						<p>2.0 is the first release that we've used real web components, and we leveraged them heavily in the vertical homescreen.</p>
-						<ul>
-							<li>gaia-buttons</li>
-							<li>gaia-confirm</li>
-							<li>gaia-menu</li>
-							<li>gaia-grid</li>
-						</ul>
-					</section>
-					<section>
-						<h2>gaia-grid</h2>
-						<h3>One grid to rule them all.</h3>
-						<p>
-							<img width="270" src="img/grid-home.png">
-							<img width="270" src="img/grid-collection.png">
-							<img width="270" src="img/grid-search.png">
-						</p>
-					</section>
-					<section>
-						<h2>what lives in the grid?</h2>
-						<ul>
-							<li>dividers</li>
-							<li>apps</li>
-							<li>collections</li>
-							<li>bookmarks</li>
-							<li>Custom items (search and Marketplace results)</li>
-							<li>All extend: GaiaGrid.GridItem</li>
-						</ul>
-					</section>
-					<section>
-						<h2>gaia-grid example code</h2>
-						<pre><code>
-							<gaia-grid id="thegrid"></gaia-grid>
-						</code></pre>
-						<pre><code>
-							var grid = document.getElementById('thegrid');
-							grid.add(new GaiaGrid.Mozapp(app));
-							grid.add(new GaiaGrid.Bookmark(bookmark));
-							grid.render();
-						</code></pre>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Testing</h2>
-						<p>In-depth integration testing.</p>
-						<p>Mock http servers to test application servers and various HTTP states.</p>
-					</section>
-					<section>
-						<h2>What do we test?</h2>
-						<ul>
-							<li>Application download.</li>
-							<li>HTTP download interuptions.</li>
-							<li>Application download restarts.</li>
-							<li>Application/bookmark icon state.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Example code</h2>
-						<pre><code>
-							var installer = new AppInstall(client);
-							installer.installPackage(server.manifestURL);
-
-							// Stop the server from responding
-    						server.cork(server.applicationZipUri);
-    						client.waitFor(pausedState);
-
-    						// Resume the download
-							server.uncork(server.applicationZipUri);
-							client.waitFor(readyState);
-						</code></pre>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Performance</h2>
-						<ul>
-							<li>Native APZ scrolling.</li>
-							<li>Performance tradeoff between more pre-loading (display port) and faster scrolling.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Will-change</h2>
-						<ul>
-							<li>Before: Will-change on every icon, all the time.</li>
-							<li>Now: Will-change on edit mode, during a drag operation.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Scrolling /w will-change</h2>
-						<video class="stretch" data-autoplay src="img/scrolling.ogv"></video>
-					</section>
-				</section>
-
-				<section>
-					<h2>Challenges</h2>
-					<ul>
-						<li>Massive feature, and no one knew what the scope was.</li>
-						<li>Doing everything in a single release cycle.</li>
-						<li>Platform bugs as we are utilizing these APIs for the first time like web components, multiple datastores, etc.</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>The Future</h2>
-					<ul>
-						<li>Bringing back zoom to change the grid configuration.</li>
-						<li>CSSOM APIs so we can interface with APZ scrolling.</li>
-						<ul>
-							<li>Drag drop, move the window as you scroll.</li>
-							<li>Home button to scroll to top.</li>
-							<li>
-							<pre><code>
-								scrollTo(0, 0, {behavior: 'smooth'});
-							</code></pre>
-							</li>
-						</ul>
-					</ul>
-				</section>
-
-				<section>
-					<h1>Thanks!</h1>
-					<p>Thanks to everyone who has supported the effort.</p>
-				</section>
-
-				<section>
-					<h1>Questions?</h1>
-				</section>
 			</div>
 
 		</div>
